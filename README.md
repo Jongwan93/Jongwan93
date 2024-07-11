@@ -1,7 +1,5 @@
-<div align="center">
-![b9371273ae94a946e92074d1b9696680](https://github.com/user-attachments/assets/0d842dc6-fcf3-4d00-9d84-480152c5ab28)
+![Welcome-to](https://github.com/user-attachments/assets/864bea6c-0bca-4420-b321-dc034fa82244)
 
-</div>
 
 <!--
 **Jongwan93/Jongwan93** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
