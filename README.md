@@ -51,6 +51,10 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
           <td align="center" width="96">
         <img src="https://techstack-generator.vercel.app/restapi-icon.svg" width="65" height="65" alt="Rest API" />
       <br>Rest API
+          </td>
+                    <td align="center" width="96">
+        <img src="https://skillicons.dev/icons?i=postgres" width="48" height="48" alt="jquery" />
+      <br>PostgreSQL
   </tr>
   <tr>
     <td align="center" width="96">
@@ -81,9 +85,6 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
         <img src="https://skillicons.dev/icons?i=jquery" width="48" height="48" alt="jquery" />
       <br>JQuery
     </td>
-        <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=postgres" width="48" height="48" alt="jquery" />
-      <br>PostgreSQL
  <tr>
  </tr>
 </table>
