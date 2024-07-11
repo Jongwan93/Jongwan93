@@ -25,7 +25,7 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
 
 
 <div align="center">
-  ## Personal Favourite Tools ##
+  ## Personal Favourite Tools ⚙️
 > Tools that I am currently studying or worked with
 <table>
   <tr>
