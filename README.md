@@ -16,7 +16,7 @@
 <img src="https://img.shields.io/badge/gitlab-330F63?style=for-the-badge&logo=gitlab&logoColor=white">
 </a>
 </div>
-
+<br>
 <p align="justify">
 Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I am Computer Programming & Analysis student at Seneca Polytechnic. I am a enthusiastic and fast learner who has multiple work experiences in different fields. 
 
