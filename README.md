@@ -25,6 +25,7 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
 ## Personal Favourite Tools ##
 > Tools that I am currently studying or worked with
 
+<div align="center">
 <table>
   <tr>
     <td align="center" width="96">
@@ -88,6 +89,7 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
  <tr>
  </tr>
 </table>
+</div>
 
 <!--
 **Jongwan93/Jongwan93** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
