@@ -17,6 +17,11 @@
 </a>
 </div>
 
+<p align="justify">
+Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I am Computer Programming & Analysis student at Seneca Polytechnic. I am a enthusiastic and fast learner who has multiple work experiences in different fields. 
+
+</p>
+
 <!--
 **Jongwan93/Jongwan93** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
