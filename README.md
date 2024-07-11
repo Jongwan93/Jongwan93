@@ -1,7 +1,6 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/864bea6c-0bca-4420-b321-dc034fa82244" />
+  <img src="https://github.com/user-attachments/assets/5c8683bf-d34b-44b4-860f-5f94a97aed0e" />
 </div>
-
 
 <!--
 **Jongwan93/Jongwan93** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
