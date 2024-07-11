@@ -2,8 +2,6 @@
   <img src="https://github.com/user-attachments/assets/864bea6c-0bca-4420-b321-dc034fa82244" />
 </div>
 
-![Welcome-to](https://github.com/user-attachments/assets/864bea6c-0bca-4420-b321-dc034fa82244)
-
 
 <!--
 **Jongwan93/Jongwan93** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
