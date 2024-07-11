@@ -94,8 +94,8 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
 
 ## Github stats 📊
   <br/>
-    [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
-  <br/>
+    <!--[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+  <br/>-->
 
 
 <!--
