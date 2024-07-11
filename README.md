@@ -25,7 +25,7 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
 
 
 <div align="center">
-  ## Personal Favourite Tools <br>
+  👷‍♂️: Personal Favourite Tools 🔨:<br>
 > Tools that I am currently studying or worked with
 <table>
   <tr>
@@ -51,8 +51,8 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
       <br>Github
     </td>
           <td align="center" width="96">
-        <img src="https://techstack-generator.vercel.app/restapi-icon.svg" width="65" height="65" alt="Rest API" />
-      <br>Rest API
+        <img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="icon" width="65" height="65" /></div>
+      <br>MySQL
           </td>
                     <td align="center" width="96">
         <img src="https://skillicons.dev/icons?i=postgres" width="48" height="48" alt="jquery" />
@@ -84,13 +84,19 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
       <br>Tailwind
     </td>
         <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=jquery" width="48" height="48" alt="jquery" />
-      <br>JQuery
+        <img src="https://techstack-generator.vercel.app/java-icon.svg" alt="icon" width="65" height="65" /></div>
+      <br>Java
     </td>
  <tr>
  </tr>
 </table>
 </div>
+
+## Github stats 📊
+  <br/>
+    [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+  <br/>
+
 
 <!--
 **Jongwan93/Jongwan93** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
