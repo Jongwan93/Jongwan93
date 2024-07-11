@@ -2,6 +2,7 @@
   <img src="https://github.com/user-attachments/assets/5c8683bf-d34b-44b4-860f-5f94a97aed0e" />
 </div>
 
+<br>
 <div align="center">
 <a href="https://www.instagram.com/jwhur93/">
 <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white">
