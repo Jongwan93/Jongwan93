@@ -22,10 +22,11 @@ Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I 
 </p>
 
 <br>
-## Personal Favourite Tools ##
-> Tools that I am currently studying or worked with
+
 
 <div align="center">
+  ## Personal Favourite Tools ##
+> Tools that I am currently studying or worked with
 <table>
   <tr>
     <td align="center" width="96">
