@@ -18,7 +18,7 @@
 </div>
 <br>
 <p align="justify">
-Welcome to my GitHub! I am Jong wan Hur also known asn Steven Hur. Currently, I am Computer Programming & Analysis student at Seneca Polytechnic. I am a enthusiastic and fast learner who has multiple work experiences in different fields. 
+Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Currently, I am Computer Programming & Analysis student at Seneca Polytechnic. I am a enthusiastic and fast learner who has multiple work experiences in different fields. 
 </p>
 
 <br>
