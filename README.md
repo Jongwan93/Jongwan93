@@ -93,9 +93,14 @@ Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Currently, I a
   </table>
 </div>
 ## Github stats 📊
-  <br/>
-    <!--[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
-  <br/>-->
+<br/>
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Jongwan93&layout=compact&theme=radical" alt="Top Langs" />
+  
+  <br/><br/>
+
+  <img src="https://github-readme-stats.vercel.app/api?username=Jongwan93&show_icons=true&theme=radical" alt="Jongwan93's Github Stats" />
+</div>
 
 
 <!--
