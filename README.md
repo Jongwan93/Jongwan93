@@ -99,13 +99,13 @@ Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Currently, I a
 
 ### 🛠️ Pull Requests & Issues
 
-* <img src="https://img.shields.io/badge/Dagster-%23252131.svg?style=for-the-badge&logo=dagster&logoColor=white"> **[Dagster](https://github.com/dagster-io/dagster)**
+* <img src="https://img.shields.io/badge/Dagster-%23252131.svg?style=for-the-badge&logo=dagster&logoColor=white"> **[](https://github.com/dagster-io/dagster)**
   * [#IssueNumber](Link) - Contributed to **Software-defined Assets** documentation and logic.
-* <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white"> **[scikit-learn](https://github.com/scikit-learn/scikit-learn)**
+* <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white"> **[](https://github.com/scikit-learn/scikit-learn)**
   * [#PRNumber](Link) - Enhanced error handling for **Classification Models**.
-* <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white"> **[NumPy](https://github.com/numpy/numpy)**
+* <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white"> **[](https://github.com/numpy/numpy)**
   * [#PRNumber](Link) - Optimized core array manipulation performance.
-* <img src="https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white"> **[Pandas](https://github.com/pandas-dev/pandas)**
+* <img src="https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white"> **[](https://github.com/pandas-dev/pandas)**
   * [#IssueNumber](Link) - Identified and discussed edge cases in **Data Preprocessing**.
 
 <br>
