@@ -89,5 +89,22 @@ Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Currently, I a
       </td>
     </tr>
   </table>
+
+    ---
+
+## 🚀 Open Source Contributions
+> "Contributing back to the community and learning through collaboration."
+
+### 🛠️ Pull Requests & Issues
+* **[Dagster](https://github.com/dagster-io/dagster)**: 
+  * [#IssueNumber](Link) - Fixed a bug in software-defined assets documentation.
+* **[scikit-learn](https://github.com/scikit-learn/scikit-learn)**:
+  * [#PRNumber](Link) - Improved error handling in classification models.
+* **[NumPy](https://github.com/numpy/numpy)**:
+  * [#PRNumber](Link) - Optimized array manipulation performance.
+* **[Pandas](https://github.com/pandas-dev/pandas)**:
+  * [#IssueNumber](Link) - Reported and discussed data preprocessing edge cases.
+
+<br>
 </div>
 
