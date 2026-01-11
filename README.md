@@ -113,8 +113,3 @@ Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Currently, I a
   * [issue-30277](https://github.com/numpy/numpy/pull/30277)
 
 <br>
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=jongwan93&show_icons=true&theme=radical" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=jongwan93&layout=compact&theme=radical" alt="Top Langs" />
-</div>
