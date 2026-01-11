@@ -90,6 +90,9 @@ Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Currently, I a
     </tr>
   </table>
 </div>
+    
+<br>
+<br>
 
 ## 🚀 Open Source Contributions
 > "Contributing back to the community and learning through collaboration."
