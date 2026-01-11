@@ -99,7 +99,7 @@ Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Currently, I a
 
 ### 🛠️ Pull Requests & Issues
 
-* <img src="https://img.shields.io/badge/Dagster-white?style=flat-square&logo=dagster&logoColor=black"> **[Dagster](https://github.com/dagster-io/dagster)**
+* <img src="https://img.shields.io/badge/Dagster-%23252131.svg?style=for-the-badge&logo=dagster&logoColor=white"> **[Dagster](https://github.com/dagster-io/dagster)**
   * [#IssueNumber](Link) - Contributed to **Software-defined Assets** documentation and logic.
 * <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white"> **[scikit-learn](https://github.com/scikit-learn/scikit-learn)**
   * [#PRNumber](Link) - Enhanced error handling for **Classification Models**.
