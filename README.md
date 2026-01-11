@@ -114,3 +114,7 @@ Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Currently, I a
 
 <br>
 
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=본인계정&show_icons=true&theme=radical" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=본인계정&layout=compact&theme=radical" alt="Top Langs" />
+</div>
