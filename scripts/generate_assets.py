@@ -580,7 +580,7 @@ BUTTERFLY_B = ["..K..", ".WKW.", "..K.."]
 
 
 def welcome():
-    W, H = 960, 520
+    W, H = 960, 552
     HORIZON = 216
     dy = 320  # dialog box top
     b = []
