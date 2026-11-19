@@ -1,115 +1,65 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/5c8683bf-d34b-44b4-860f-5f94a97aed0e" />
+  <img src="./assets/banner.svg" width="100%" alt="Pixel-art banner: Steven Hur, Machine Learning Engineer, running through a night city and stomping a bug" />
 </div>
-
-<br>
-<div align="center">
-<a href="https://www.instagram.com/jwhur93/">
-<img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white">
-</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/jongwanhur/">
-<img src="https://img.shields.io/badge/Linkedin-%231DA1F2.svg?style=for-the-badge&logo=Linkedin&logoColor=white">
-</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://dev.to/jongwan93">
-<img src="https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=devto&logoColor=white">
-</a>
-</div>
-<br>
-<p align="justify">
-Welcome to my GitHub! I am Jong wan Hur also known as Steven Hur. Hardworking Machine Learning Engineer who loves turning data into reliable, high-performance intelligent systems.
-</p>
-
-<br>
-
 
 <div align="center">
-  👷‍♂️: Personal Favourite Tools : 🔨<br>
-  > Tools that I am currently studying or worked with <
-  <table>
-    <tr>
-      <td align="center" width="96">
-        <a href="#macropower-tech">
-          <img src="https://techstack-generator.vercel.app/python-icon.svg" alt="icon" width="65" height="65" />
-        </a>
-        <br>Python
-      </td>
-      <td align="center" width="96">
-        <img src="https://techstack-generator.vercel.app/java-icon.svg" alt="icon" width="65" height="65" />
-        <br>Java
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=spring" alt="icon" width="65" height="65" />
-        <br>Spring Boot
-      </td>
-      <td align="center" width="96">
-        <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />
-        <br>Javascript
-      </td>
-      <td align="center" width="96">
-        <img src="https://techstack-generator.vercel.app/cpp-icon.svg" alt="icon" width="65" height="65" />
-        <br>C++
-      </td>
-      <td align="center" width="96">
-        <img src="https://techstack-generator.vercel.app/github-icon.svg" width="65" height="65" alt="GitHub" />
-        <br>Github
-      </td>
-      <td align="center" width="96">
-        <img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="icon" width="65" height="65" />
-        <br>MySQL
-      </td>
-    </tr>
-    <tr>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=postgres" width="48" height="48" alt="postgres" />
-        <br>PostgreSQL
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=git" width="48" height="48" alt="Git" />
-        <br>Git
-      </td>
-      <td align="center"  width="96">
-        <img src="https://skillicons.dev/icons?i=gitlab" width="48" height="48" alt="GitLab" />
-        <br>GitLab
-      </td>
-      <td align="center"  width="96">
-        <img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" />
-        <br>HTML
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="css" />
-        <br>CSS
-      </td>
-      <td align="center"  width="96">
-        <img src="https://skillicons.dev/icons?i=bootstrap" width="48" height="48" alt="bootstrap" />
-        <br>Bootstrap
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="tailwind" />
-        <br>Tailwind
-      </td>
-    </tr>
-  </table>
+<a href="https://www.instagram.com/jwhur93/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
+<a href="https://www.linkedin.com/in/jongwanhur/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+<a href="https://dev.to/jongwan93"><img src="https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=devdotto&logoColor=white" alt="dev.to" /></a>
 </div>
-    
-<br>
-<br>
-
-## 🚀 Open Source Contributions
-> "Contributing back to the community and learning through collaboration."
-
-### 🛠️ Pull Requests & Issues
-
-* <img src="https://img.shields.io/badge/Dagster-%23252131.svg?style=for-the-badge&logo=dagster&logoColor=white"> **[](https://github.com/dagster-io/dagster)**
-  * [issue-32953](https://github.com/dagster-io/dagster/pull/32953)
-  * [issue-32841](https://github.com/dagster-io/dagster/pull/32841)
-  * [issue-32948](https://github.com/dagster-io/dagster/pull/32948)
-  * [issue-32650](https://github.com/dagster-io/dagster/pull/32650)
-* <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white"> **[](https://github.com/scikit-learn/scikit-learn)**
-  * [issue-32444](https://github.com/scikit-learn/scikit-learn/pull/32444)
-  * [issue-32445](https://github.com/scikit-learn/scikit-learn/pull/32445)
-* <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white"> **[](https://github.com/numpy/numpy)**
-  * [issue-30277](https://github.com/numpy/numpy/pull/30277)
 
 <br>
+
+<div align="center">
+  <img src="./assets/status.svg" width="100%" alt="Player status: Jong Wan Hur, alias Steven Hur, class ML Engineer. Welcome to my GitHub! I'm a hardworking Machine Learning Engineer who loves turning data into reliable, high-performance intelligent systems." />
+</div>
+
+<br>
+
+<img src="./assets/header-inventory.svg" width="100%" alt="Inventory" />
+
+<div align="center">
+  <br>
+  <img src="https://skillicons.dev/icons?i=python,java,spring,js,cpp,github,mysql&perline=7" alt="Python, Java, Spring Boot, JavaScript, C++, GitHub, MySQL" />
+  <br>
+  <img src="https://skillicons.dev/icons?i=postgres,git,gitlab,html,css,bootstrap,tailwind&perline=7" alt="PostgreSQL, Git, GitLab, HTML, CSS, Bootstrap, Tailwind" />
+  <br><br>
+  <sub><code>[ EQUIPPED ]</code> Python · Java · Spring Boot · JavaScript · C++ · GitHub · MySQL &nbsp;|&nbsp; <code>[ BAG ]</code> PostgreSQL · Git · GitLab · HTML · CSS · Bootstrap · Tailwind</sub>
+</div>
+
+<br>
+
+<img src="./assets/header-quests.svg" width="100%" alt="Quest log: open source contributions" />
+
+> *"Contributing back to the community and learning through collaboration."*
+
+| Guild | Quest | Status |
+| :---: | :--- | :---: |
+| <img src="https://img.shields.io/badge/Dagster-4F43DD?style=flat-square&logo=dagster&logoColor=white" alt="Dagster" /> | [#32953](https://github.com/dagster-io/dagster/pull/32953) Handle `InputDefinition` objects when mapping asset specs | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
+| <img src="https://img.shields.io/badge/Dagster-4F43DD?style=flat-square&logo=dagster&logoColor=white" alt="Dagster" /> | [#32841](https://github.com/dagster-io/dagster/pull/32841) Fix `FileExistsError` on Windows during dbt project reload | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
+| <img src="https://img.shields.io/badge/Dagster-4F43DD?style=flat-square&logo=dagster&logoColor=white" alt="Dagster" /> | [#32948](https://github.com/dagster-io/dagster/pull/32948) Fix `IndexError` when an ECS task fails to launch in `PipesECSClient` | ![IN PROGRESS](https://img.shields.io/badge/⚔_IN_PROGRESS-ffd25a?style=flat-square) |
+| <img src="https://img.shields.io/badge/Dagster-4F43DD?style=flat-square&logo=dagster&logoColor=white" alt="Dagster" /> | [#32650](https://github.com/dagster-io/dagster/pull/32650) Handle callables with a custom `__signature__` in `get_type_hints` | ![IN PROGRESS](https://img.shields.io/badge/⚔_IN_PROGRESS-ffd25a?style=flat-square) |
+| <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white" alt="scikit-learn" /> | [#32444](https://github.com/scikit-learn/scikit-learn/pull/32444) Switch to absolute imports in `_datasets_pair.pxd.tp` | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
+| <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white" alt="scikit-learn" /> | [#32445](https://github.com/scikit-learn/scikit-learn/pull/32445) Switch to absolute imports in `_datasets_pair.pyx.tp` | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
+| <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white" alt="NumPy" /> | [#30277](https://github.com/numpy/numpy/pull/30277) Fix misleading `ValueError` in `convolve` on empty inputs | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
+
+<br>
+
+<img src="./assets/header-battle.svg" width="100%" alt="Battle log: contribution graph" />
+
+<div align="center">
+  <br>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Jongwan93/Jongwan93/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Jongwan93/Jongwan93/output/github-snake.svg" />
+    <img src="https://raw.githubusercontent.com/Jongwan93/Jongwan93/output/github-snake-dark.svg" width="100%" alt="A snake eating my contribution graph" />
+  </picture>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="./assets/footer.svg" width="100%" alt="Thanks for playing! Continue?" />
+</div>
+
+<!-- Pixel art is generated by scripts/generate_assets.py — edit there and re-run. -->
