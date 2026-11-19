@@ -93,6 +93,9 @@ _FONT_SRC = {
     "}": "#.... ##... ###.. ####. ###.. ##... #....",  # play triangle
     "~": "..... ..... ##### .###. ..#.. ..... .....",  # dialog arrow
     "*": "..... .#.#. ##### ##### .###. ..#.. .....",  # heart
+    "$": "..... ..#.. .###. ##### .###. .#.#. .....",  # star
+    "[": ".###. .#... .#... .#... .#... .#... .###.",
+    "]": ".###. ...#. ...#. ...#. ...#. ...#. .###.",
 }
 FONT = {k: v.split() for k, v in _FONT_SRC.items()}
 CELL = 6  # glyph advance in font pixels (5 + 1 spacing)
@@ -214,16 +217,6 @@ BUG_A = [
     ".K.K....K.K.",
 ]
 BUG_B = BUG_A[:-1] + ["K..K....K..K"]
-
-HEART = [
-    ".RR.RR.",
-    "RWRRRRR",
-    "RRRRRRR",
-    ".RRRRR.",
-    "..RRR..",
-    "...R...",
-]
-HEART_PAL = {"R": RED, "W": "#ffb3b8"}
 
 COIN = [
     "..KKKK..",
@@ -426,13 +419,6 @@ def banner():
     g.append(f'<path fill="#8a5530" d="{"".join(light)}"/>')
     b.append(f'<g class="ground">{"".join(g)}</g>')
 
-    # HUD
-    b.append(text("1P STEVEN", 24, 20, 3, WHITE, INK))
-    b.append(text("SCORE 001993", 24, 48, 2, CYAN, INK))
-    for i in range(3):
-        b.append(f'<g class="hb">{sprite(HEART, HEART_PAL, W - 120 + i * 32, 22, 4)}</g>')
-    b.append(text("LIFE", W - 120, 52, 2, GRAY, INK))
-
     # title
     b.append(text("WELCOME TO", W / 2, 28, 3, CYAN, INK, center=True))
     title = "STEVEN HUR"
@@ -483,8 +469,6 @@ def banner():
 @keyframes gscroll{{from{{transform:translateX(0)}}to{{transform:translateX(-32px)}}}}
 .blink{{animation:blink 1s steps(1) infinite}}
 @keyframes blink{{0%{{opacity:1}}50%{{opacity:0}}}}
-.hb{{animation:beat 1.2s steps(1) infinite}}
-@keyframes beat{{0%{{transform:translateY(0)}}50%{{transform:translateY(-4px)}}}}
 .fa{{animation:fa .3s steps(1) infinite}}
 .fb{{animation:fb .3s steps(1) infinite}}
 @keyframes fa{{0%{{opacity:1}}50%{{opacity:0}}}}
@@ -821,24 +805,121 @@ NUMPY_PATH = "M10.315 4.876L6.3048 2.8517l-4.401 2.1965 4.1186 2.0683zm1.8381.92
 SPARK_PATH = "M10.812 0c-.425.013-.845.215-1.196.605a3.593 3.593 0 00-.493.722c-.355.667-.425 1.415-.556 2.143a551.9 551.9 0 00-.726 4.087c-.027.16-.096.227-.244.273C5.83 8.386 4.06 8.94 2.3 9.514c-.387.125-.773.289-1.114.506-1.042.665-1.196 1.753-.415 2.71.346.422.79.715 1.284.936 1.1.49 2.202.976 3.3 1.47.019.01.036.013.053.019h-.004l1.306.535c0 .023.002.045 0 .073-.2 2.03-.39 4.063-.58 6.095-.04.419-.012.831.134 1.23.317.87 1.065 1.148 1.881.701.372-.204.666-.497.937-.818 1.372-1.623 2.746-3.244 4.113-4.872.111-.133.205-.15.363-.098.349.117.697.231 1.045.347h.001c.02.012.045.02.073.03l.142.042c1.248.416 2.68.775 3.929 1.19.4.132.622.164 1.045.098.311-.048.592-.062.828-.236.602-.33.995-.957.988-1.682-.005-.427-.154-.813-.35-1.186-.82-1.556-1.637-3.113-2.461-4.666-.078-.148-.076-.243.037-.375 1.381-1.615 2.756-3.236 4.133-4.855.272-.32.513-.658.653-1.058.308-.878-.09-1.57-1-1.741a2.783 2.783 0 00-1.235.069c-1.974.521-3.947 1.041-5.918 1.57-.175.047-.26.015-.355-.144a353.08 353.08 0 00-2.421-4.018 4.61 4.61 0 00-.652-.849c-.371-.37-.802-.549-1.227-.536zm.172 3.703a.592.592 0 01.189.211c.87 1.446 1.742 2.89 2.609 4.338.07.118.135.16.277.121 1.525-.41 3.052-.813 4.579-1.217.367-.098.735-.193 1.103-.289a.399.399 0 01-.1.2c-1.259 1.48-2.516 2.962-3.779 4.438-.11.13-.12.22-.04.37.937 1.803 1.768 3.309 2.498 4.76l-3.696-1.019c-.538-.18-1.077-.358-1.615-.539-.163-.055-.25-.03-.36.1-1.248 1.488-2.504 2.97-3.759 4.454a.398.398 0 01-.18.132c.035-.378.068-.757.104-1.136.149-1.572.297-3.144.451-4.716-.03-.318.117-.405-.322-.545-1.493-.593-3.346-1.321-4.816-1.905a.595.595 0 01.24-.134c1.797-.57 3.595-1.14 5.394-1.705.127-.04.199-.092.211-.233.013-.148.05-.294.076-.441.241-1.363.483-2.726.726-4.088.068-.386.14-.771.21-1.157z"
 
 
-def extra_icons():
-    """NumPy + PySpark tiles drawn in skillicons.dev's style (256px tile, rx 60,
-    44px gap), with a leading gap so the image sits flush after a skillicons row."""
-    tile, gap, h = 256, 44, 48
-    icons = [(NUMPY_PATH, "#4DABCF"), (SPARK_PATH, "#E25A1C")]
-    vw = len(icons) * (gap + tile)
-    body = []
-    for i, (d, color) in enumerate(icons):
-        x = gap + i * (tile + gap)
-        body.append(
-            f'<rect x="{x}" width="{tile}" height="{tile}" rx="60" fill="#242938"/>'
-            f'<path transform="translate({x + 48} 48) scale(6.6667)" fill="{color}" d="{d}"/>'
-        )
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{vw * h / tile:g}" height="{h}" '
-        f'viewBox="0 0 {vw} {tile}" fill="none" role="img" aria-label="NumPy, PySpark">'
-        f"<title>NumPy, PySpark</title>{''.join(body)}</svg>\n"
+# --------------------------------------------------------------------------
+# 6. Inventory: tech stack as an RPG item grid with an auto-moving cursor
+# --------------------------------------------------------------------------
+# Pixel sprites for each id live in scripts/icon_pixels.json (made by pixelate_icons.py).
+INVENTORY = [
+    {"id": "python", "name": "PYTHON", "rarity": "LEGENDARY", "type": "MAIN WEAPON", "stat": "+99 DATA MAGIC"},
+    {"id": "java", "name": "JAVA", "rarity": "EPIC", "type": "HEAVY ARMOR", "stat": "+80 STABILITY"},
+    {"id": "spring", "name": "SPRING BOOT", "rarity": "EPIC", "type": "BOOTS", "stat": "+70 JUMP POWER"},
+    {"id": "js", "name": "JAVASCRIPT", "rarity": "RARE", "type": "THROWING DAGGER", "stat": "+60 WEB AGILITY"},
+    {"id": "github", "name": "GITHUB", "rarity": "RARE", "type": "GUILD BADGE", "stat": "+60 TEAMWORK"},
+    {"id": "mysql", "name": "MYSQL", "rarity": "RARE", "type": "STORAGE CHEST", "stat": "+60 QUERY SPEED"},
+    {"id": "postgres", "name": "POSTGRESQL", "rarity": "EPIC", "type": "ELEPHANT MOUNT", "stat": "+80 INTEGRITY"},
+    {"id": "git", "name": "GIT", "rarity": "RARE", "type": "TIME SCROLL", "stat": "UNDO ANY MISTAKE"},
+    {"id": "pytorch", "name": "PYTORCH", "rarity": "LEGENDARY", "type": "FLAME TORCH", "stat": "+99 NEURAL POWER"},
+    {"id": "sklearn", "name": "SCIKIT-LEARN", "rarity": "EPIC", "type": "ALCHEMY KIT", "stat": "+80 ACCURACY"},
+    {"id": "numpy", "name": "NUMPY", "rarity": "EPIC", "type": "ARRAY CUBE", "stat": "+90 VECTOR SPEED"},
+    {"id": "pyspark", "name": "PYSPARK", "rarity": "EPIC", "type": "SPARK GEM", "stat": "+90 BIG DATA AOE"},
+]
+RARITY = {"LEGENDARY": (ORANGE, 5), "EPIC": ("#b57bff", 4), "RARE": (BLUE, 3)}
+ICON_PIXELS = Path(__file__).resolve().parent / "icon_pixels.json"
+
+
+def inventory():
+    import json
+
+    icons = json.loads(ICON_PIXELS.read_text())
+    W, H = 960, 300
+    N = len(INVENTORY)
+    COLS, SLOT, GAP = 6, 88, 12
+    gx, gy = 36, 36
+    per = 1.8
+    cycle = N * per
+    b = [pixel_frame(0, 0, W, H)]
+    css = []
+
+    def slot_xy(i):
+        return gx + (i % COLS) * (SLOT + GAP), gy + (i // COLS) * (SLOT + GAP)
+
+    # item grid
+    for i, item in enumerate(INVENTORY):
+        x, y = slot_xy(i)
+        col, _ = RARITY[item["rarity"]]
+        cls = ' class="legend"' if item["rarity"] == "LEGENDARY" else ""
+        b.append(f'<rect{cls} x="{x}" y="{y}" width="{SLOT}" height="{SLOT}" fill="{col}"/>')
+        b.append(f'<rect x="{x + 4}" y="{y + 4}" width="{SLOT - 8}" height="{SLOT - 8}" fill="{INK}"/>')
+        b.append(f'<rect x="{x + 8}" y="{y + 8}" width="{SLOT - 16}" height="{SLOT - 16}" fill="#1a1f4a"/>')
+        b.append(f'<rect x="{x + 8}" y="{y + 8}" width="{SLOT - 16}" height="4" fill="#262c63"/>')
+        ic = icons[item["id"]]
+        b.append(sprite(ic["rows"], ic["palette"], x + 8, y + 8, 3))
+    hint = "AUTO-BROWSING..."
+    grid_right = gx + COLS * SLOT + (COLS - 1) * GAP
+    b.append(text(hint, grid_right - text_width(hint, 2), H - 52, 2, GRAY, INK, cls="blink"))
+    lx = gx
+    for k, (label, (col, _)) in enumerate(RARITY.items()):
+        b.append(f'<rect x="{lx}" y="{H - 52}" width="14" height="14" fill="{col}"/>')
+        b.append(text(label, lx + 22, H - 52, 2, col, INK))
+        lx += 22 + text_width(label, 2) + 28
+
+    # cursor: yellow corner brackets hopping slot to slot
+    c = 6
+    L, T = 20, 6
+    s = SLOT + 2 * c
+    corners = (
+        f"M0 0h{L}v{T}h{-(L - T)}v{L - T}h{-T}z"
+        f"M{s} 0v{L}h{-T}v{-(L - T)}h{-(L - T)}v{-T}z"
+        f"M0 {s}v{-L}h{T}v{L - T}h{L - T}v{T}z"
+        f"M{s} {s}h{-L}v{-T}h{L - T}v{-(L - T)}h{T}z"
     )
+    b.append(f'<g class="cursor"><g class="cpulse"><path fill="{YELLOW}" d="{corners}"/></g></g>')
+    ks = []
+    for i in range(N):
+        x, y = slot_xy(i)
+        ks.append(f"{i / N * 100:.3f}%{{transform:translate({x - c}px,{y - c}px)}}")
+    x, y = slot_xy(0)
+    ks.append(f"100%{{transform:translate({x - c}px,{y - c}px)}}")
+    css.append(f".cursor{{animation:cur {cycle}s step-end infinite}}@keyframes cur{{{''.join(ks)}}}")
+
+    # detail panel, one page per item, synced with the cursor
+    px0, py0, pw, ph = 652, 24, 284, H - 48
+    b.append(pixel_frame(px0, py0, pw, ph, fill=NAVY2))
+    ix = px0 + 22
+    for i, item in enumerate(INVENTORY):
+        col, stars = RARITY[item["rarity"]]
+        ic = icons[item["id"]]
+        page = [
+            f'<rect x="{ix - 4}" y="{py0 + 20}" width="80" height="80" fill="{col}"/>',
+            f'<rect x="{ix}" y="{py0 + 24}" width="72" height="72" fill="#1a1f4a"/>',
+            sprite(ic["rows"], ic["palette"], ix, py0 + 24, 3),
+            text(item["rarity"], ix + 92, py0 + 30, 2, col, INK),
+            text("$" * stars, ix + 92, py0 + 52, 3, YELLOW, INK),
+            text(item["name"], ix, py0 + 116, 3, WHITE, INK),
+            text(item["type"], ix, py0 + 150, 2, GRAY, INK),
+            text(item["stat"], ix, py0 + 176, 2, GREEN, INK),
+            text("[E] EQUIPPED", ix, py0 + 208, 2, CYAN, INK),
+        ]
+        b.append(f'<g class="p{i}">{"".join(page)}</g>')
+        a, z = i / N * 100, (i + 1) / N * 100
+        css.append(
+            f".p{i}{{opacity:{1 if i == 0 else 0};animation:p{i} {cycle}s step-end infinite}}"
+            f"@keyframes p{i}{{0%{{opacity:{1 if i == 0 else 0}}}"
+            + (f"{a:.3f}%{{opacity:1}}" if i else "")
+            + f"{z:.3f}%{{opacity:0}}100%{{opacity:0}}}}"
+        )
+
+    css.append("""
+.blink{animation:blink 1.4s steps(1) infinite}
+@keyframes blink{0%{opacity:1}50%{opacity:.35}}
+.cpulse{animation:cp .6s steps(1) infinite}
+@keyframes cp{0%{transform:translate(0,0)}50%{transform:translate(0,-2px)}}
+.legend{animation:legend 1.2s steps(1) infinite}
+@keyframes legend{0%{fill:#ff9f43}50%{fill:#ffd25a}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+""")
+    names = ", ".join(it["name"].title() for it in INVENTORY)
+    return svg_doc(W, H, "".join(b), "".join(css), f"Inventory: {names}")
 
 
 def main():
@@ -850,7 +931,7 @@ def main():
         "header-quests.svg": header("QUEST LOG", "CLEARED: 5  ACTIVE: 2", SCROLL, SCROLL_PAL),
         "header-battle.svg": header("BATTLE LOG", "CONTRIBUTIONS.EXE", JOYSTICK, JOY_PAL),
         "footer.svg": footer(),
-        "icons-extra.svg": extra_icons(),
+        "inventory.svg": inventory(),
     }
     for name, svg in files.items():
         (OUT / name).write_text(svg)

@@ -19,12 +19,7 @@
 <img src="./assets/header-inventory.svg" width="100%" alt="Inventory" />
 
 <div align="center">
-  <br>
-  <img src="https://skillicons.dev/icons?i=python,java,spring,js,github,mysql&perline=6" alt="Python, Java, Spring Boot, JavaScript, GitHub, MySQL" />
-  <br>
-  <img src="https://skillicons.dev/icons?i=postgres,git,pytorch,sklearn&perline=4" alt="PostgreSQL, Git, PyTorch, scikit-learn" /><img src="./assets/icons-extra.svg" alt="NumPy, PySpark" />
-  <br><br>
-  <sub><code>[ EQUIPPED ]</code> Python · Java · Spring Boot · JavaScript · GitHub · MySQL &nbsp;|&nbsp; <code>[ BAG ]</code> PostgreSQL · Git · PyTorch · scikit-learn · NumPy · PySpark</sub>
+  <img src="./assets/inventory.svg" width="100%" alt="Inventory of my tech stack: Python, Java, Spring Boot, JavaScript, GitHub, MySQL, PostgreSQL, Git, PyTorch, scikit-learn, NumPy, PySpark" />
 </div>
 
 <br>
