@@ -434,22 +434,23 @@ def banner():
     b.append(text("LIFE", W - 120, 52, 2, GRAY, INK))
 
     # title
-    b.append(text("WELCOME TO", W / 2, 34, 3, CYAN, INK, center=True))
+    b.append(text("WELCOME TO", W / 2, 28, 3, CYAN, INK, center=True))
     title = "STEVEN HUR"
-    tpx = 9
+    tpx = 11
+    ty = 66
     tx = W / 2 - text_width(title, tpx) / 2
     b.append(
-        '<defs><linearGradient id="tg" x1="0" y1="66" x2="0" y2="129" gradientUnits="userSpaceOnUse">'
+        f'<defs><linearGradient id="tg" x1="0" y1="{ty}" x2="0" y2="{ty + 7 * tpx}" gradientUnits="userSpaceOnUse">'
         f'<stop offset="0" stop-color="#fff6c8"/><stop offset=".29" stop-color="#fff6c8"/>'
         f'<stop offset=".29" stop-color="{YELLOW}"/><stop offset=".58" stop-color="{YELLOW}"/>'
         f'<stop offset=".58" stop-color="{ORANGE}"/><stop offset="1" stop-color="{ORANGE}"/>'
         "</linearGradient></defs>"
     )
-    b.append(f'<path fill="{RED}" d="{text_path(title, tx + 6, 66 + 6, tpx)}"/>')
-    b.append(f'<path fill="{INK}" d="{text_path(title, tx + 10, 66 + 10, tpx)}" opacity=".6"/>')
-    b.append(f'<path fill="url(#tg)" d="{text_path(title, tx, 66, tpx)}"/>')
-    b.append(text("JONG WAN HUR  -  MACHINE LEARNING ENGINEER", W / 2, 146, 3, WHITE, INK, center=True))
-    b.append(text("} PRESS START", W / 2, 184, 3, YELLOW, INK, cls="blink", center=True))
+    b.append(f'<path fill="{RED}" d="{text_path(title, tx + 6, ty + 6, tpx)}"/>')
+    b.append(f'<path fill="{INK}" d="{text_path(title, tx + 10, ty + 10, tpx)}" opacity=".6"/>')
+    b.append(f'<path fill="url(#tg)" d="{text_path(title, tx, ty, tpx)}"/>')
+    b.append(text("SOFTWARE ENGINEER", W / 2, 162, 4, WHITE, INK, center=True))
+    b.append(text("} PRESS START", W / 2, 214, 3, YELLOW, INK, cls="blink", center=True))
 
     # hero: runs in place, jumps on the bug
     hx, hy = 96, GROUND - 16 * 5
@@ -467,8 +468,8 @@ def banner():
         f'<g class="fb">{sprite(BUG_B, BUG_PAL, bx, by, 5)}</g>'
         "</g></g>"
     )
-    b.append(text("BUG FIXED!", 176, 188, 3, GREEN, INK, cls="pop"))
-    b.append(text("+100 EXP", 176, 216, 2, YELLOW, INK, cls="pop"))
+    b.append(text("BUG FIXED!", 172, 206, 2, GREEN, INK, cls="pop"))
+    b.append(text("+100 EXP", 172, 226, 2, YELLOW, INK, cls="pop"))
 
     css = f"""
 .tw{{animation:tw 3s steps(1) infinite}}
@@ -498,71 +499,199 @@ def banner():
 .squash{{transform-box:fill-box;transform-origin:50% 100%;animation:squash 5s infinite}}
 @keyframes squash{{0%,79%{{transform:scaleY(1);opacity:1}}82%{{transform:scaleY(.25);opacity:1}}90%,100%{{transform:scaleY(.25);opacity:0}}}}
 .pop{{opacity:0;animation:pop 5s infinite}}
-@keyframes pop{{0%,79%{{opacity:0;transform:translateY(0)}}82%{{opacity:1}}95%{{opacity:1;transform:translateY(-24px)}}100%{{opacity:0;transform:translateY(-24px)}}}}
+@keyframes pop{{0%,79%{{opacity:0;transform:translateY(0)}}82%{{opacity:1}}95%{{opacity:1;transform:translateY(-8px)}}100%{{opacity:0;transform:translateY(-8px)}}}}
 @media (prefers-reduced-motion:reduce){{*{{animation:none!important}}.fb,.pop{{opacity:0}}.bug{{transform:translateX(640px)}}}}
 """
-    return svg_doc(W, H, "".join(b), css, "Steven Hur - Machine Learning Engineer")
+    return svg_doc(W, H, "".join(b), css, "Steven Hur - Software Engineer")
 
 
 # --------------------------------------------------------------------------
-# 2. Status window + dialog
+# 2. Welcome scene: my character as an NPC + dialog box
 # --------------------------------------------------------------------------
-def status():
-    W, H = 960, 480
+def _npc_frames():
+    base = [
+        "....KKKKK.......",
+        "...KhHHHHK......",
+        "..KRRHHHHHK.....",
+        ".KRHHHHHHHHK....",
+        ".KRRHSSSSHHK....",
+        ".KRRSSSSSSSK....",  # row 5: open-eye pixel is a separate blinking overlay
+        ".KRRSSSSESSK....",  # row 6: eye (doubles as the closed-eye line)
+        "..KHSSSSSSsK....",
+        "...KKSSSSK......",
+        "..KBBBBBBK......",
+        ".KBBBBBBBBK.....",
+        ".KbBBBBBBbK.....",
+        ".KSBBBBBBSK.....",
+        "..KPPPPPPK......",
+        "..KPPKKPPK......",
+        "..KWWK.KWWK.....",
+    ]
+
+    def wave(hand):
+        rows = list(base)
+        for r, suffix in hand.items():
+            rows[r] = rows[r][:12] + suffix
+        rows[8] = "...KKSSSSKKBK..."
+        rows[9] = "..KBBBBBBBBK...."
+        rows[12] = ".KSBBBBBBBK....."
+        return rows
+
+    wave_a = wave({2: "..K.", 3: ".KSK", 4: ".KSK", 5: "KBK.", 6: "KBK.", 7: "BK.."})
+    wave_b = wave({2: ".K..", 3: "KSK.", 4: "KSK.", 5: "BK..", 6: "BK..", 7: "BK.."})
+    return base, wave_a, wave_b
+
+
+TREE = [
+    ".....KKKK.....",
+    "...KKLLLLKK...",
+    "..KLLLGGLLLK..",
+    ".KLLGGGGGGLLK.",
+    ".KLGGGGGGGGGK.",
+    "KLGGGGLGGGGGDK",
+    "KGGGGLLLGGGGDK",
+    "KGGGGGGGGGGDDK",
+    "KGGGGGGGGGDDDK",
+    ".KDGGGGGGDDDK.",
+    ".KDDDGGDDDDDK.",
+    "..KKDDDDDDKK..",
+    "....KKTtKK....",
+    ".....KTtK.....",
+    ".....KTtK.....",
+    ".....KTtK.....",
+    "....KTTttK....",
+    "...KKKKKKKK...",
+]
+TREE_PAL = {"K": "#1f4a2a", "L": "#7bd96b", "G": "#3f9e4d", "D": "#2f7d3c", "T": "#8a5530", "t": "#54301a"}
+
+CLOUD = [
+    "....WWWW........",
+    "..WWWWWWWW.WWW..",
+    ".WWWWWWWWWWWWWW.",
+    "WWWWWWWWWWWWWWWW",
+    "BWWWWWWWWWWWWWWB",
+    ".BBBBBBBBBBBBBB.",
+]
+CLOUD_PAL = {"W": WHITE, "B": "#d6ecfb"}
+
+FLOWER = [".R.", "RYR", ".g."]
+BUTTERFLY_A = ["W.K.W", "WWKWW", ".WKW."]
+BUTTERFLY_B = ["..K..", ".WKW.", "..K.."]
+
+
+def welcome():
+    W, H = 960, 520
+    HORIZON = 216
+    dy = 320  # dialog box top
     b = []
     b.append(pixel_frame(0, 0, W, H))
+    b.append(f'<defs><clipPath id="scene"><rect x="12" y="12" width="{W - 24}" height="{H - 24}"/></clipPath></defs>')
+    b.append('<g clip-path="url(#scene)">')
 
-    # portrait
-    px0, py0 = 40, 44
-    b.append(pixel_frame(px0, py0, 176, 176, fill="#2b2f6b"))
-    face_px = 12
-    fx = px0 + (176 - 12 * face_px) / 2
-    fy = py0 + 22
-    face = [row for row in HERO_TOP[:9]]
-    face_closed = [r.replace("E", "S") for r in face]
-    face_closed[6] = face[6]  # keep lower eye pixel = closed eye line
-    b.append(sprite(face_closed, HERO_PAL, fx, fy, face_px))
-    b.append(f'<g class="eye"><rect x="{fx + 8 * face_px}" y="{fy + 5 * face_px}" width="{face_px}" '
-             f'height="{face_px}" fill="#1b1b2f"/></g>')
-    # floating music notes from the headphones
-    for i, (nx, delay) in enumerate([(px0 + 22, 0), (px0 + 40, 1.3)]):
+    # daytime sky
+    bands = ["#5fb6f5", "#6fc1f7", "#82cbf8", "#97d5fa", "#aee0fb", "#c6eafc"]
+    bh = (HORIZON - 12) / len(bands)
+    for i, c in enumerate(bands):
+        b.append(f'<rect x="0" y="{12 + i * bh:g}" width="{W}" height="{bh + 1:g}" fill="{c}"/>')
+    sun = ["..YYYY..", ".YYYYYY.", "YYYYYYYY", "YYYYYYYY", "YYYYYYYY", "YYYYYYYY", ".YYYYYY.", "..YYYY.."]
+    b.append(f'<g class="glow">{sprite(sun, {"Y": "#fff6c8"}, 812, 28, 10)}</g>')
+    b.append(sprite(sun, {"Y": YELLOW}, 824, 40, 7))
+
+    # drifting clouds (two copies for a seamless loop)
+    clouds = []
+    for off in (0, W):
+        for cx, cy, s in [(80, 48, 6), (400, 92, 5), (640, 36, 4)]:
+            clouds.append(sprite(CLOUD, CLOUD_PAL, cx + off, cy, s))
+    b.append(f'<g class="clouds">{"".join(clouds)}</g>')
+
+    # stepped hills
+    r = random.Random(11)
+    for color, lo, hi, step in [("#8fd3a0", 32, 72, 32), ("#6dbf7e", 12, 40, 24)]:
+        d, h = [], (lo + hi) // 2
+        for x in range(0, W, step):
+            h = max(lo, min(hi, h + r.choice([-8, 0, 8])))
+            d.append(f"M{x} {HORIZON - h}h{step}v{h}h{-step}z")
+        b.append(f'<path fill="{color}" d="{"".join(d)}"/>')
+
+    # grass field with checker tiles and tufts
+    b.append(f'<rect x="0" y="{HORIZON}" width="{W}" height="{H - HORIZON}" fill="#5ad16a"/>')
+    tiles, tufts = [], []
+    for ty in range(HORIZON, H, 32):
+        for tx in range(0, W, 32):
+            if (tx // 32 + ty // 32) % 2:
+                tiles.append(f"M{tx} {ty}h32v32h-32z")
+    for _ in range(40):
+        gx, gy = r.randrange(0, W, 4), r.randrange(HORIZON + 8, dy, 4)
+        tufts.append(f"M{gx} {gy}h4v4h-4z M{gx + 8} {gy - 4}h4v8h-4z")
+    b.append(f'<path fill="#52c463" d="{"".join(tiles)}"/>')
+    b.append(f'<path fill="#3f9e4d" d="{"".join(tufts)}"/>')
+
+    # trees and signpost
+    b.append(sprite(TREE, TREE_PAL, 560, 262 - 18 * 6, 6))
+    b.append(sprite(TREE, TREE_PAL, 830, 280 - 18 * 7, 7))
+    b.append(sprite(TREE, TREE_PAL, 470, 240 - 18 * 4, 4))
+    sx, sy = 676, 200
+    b.append(f'<rect x="{sx + 20}" y="{sy + 44}" width="12" height="52" fill="#54301a"/>')
+    b.append(f'<rect x="{sx + 104}" y="{sy + 44}" width="12" height="52" fill="#54301a"/>')
+    b.append(f'<rect x="{sx}" y="{sy}" width="136" height="52" fill="#2a160a"/>')
+    b.append(f'<rect x="{sx + 4}" y="{sy + 4}" width="128" height="44" fill="#c47a2c"/>')
+    b.append(f'<rect x="{sx + 4}" y="{sy + 40}" width="128" height="8" fill="#8a4f1f"/>')
+    b.append(text("GITHUB", sx + 68, sy + 14, 3, "#2a160a", center=True))
+
+    # flowers swaying
+    for i, (fx, fy) in enumerate([(300, 240), (348, 268), (420, 292), (640, 300), (740, 250), (900, 300), (40, 246), (520, 284)]):
+        col = [RED, WHITE, "#ff9ecb", YELLOW][i % 4]
+        b.append(f'<g class="sway s{i % 2}">{sprite(FLOWER, {"R": col, "Y": YELLOW if col != YELLOW else ORANGE, "g": "#2f7d3c"}, fx, fy, 6)}</g>')
+
+    # butterflies
+    for i, delay in enumerate((0, 6)):
+        pal = {"W": "#ff9ecb" if i == 0 else "#fff6c8", "K": "#1b1b2f"}
+        b.append(
+            f'<g class="fly" style="animation-delay:-{delay}s"><g class="flap">'
+            f'<g class="fa">{sprite(BUTTERFLY_A, pal, 0, 0, 4)}</g>'
+            f'<g class="fb">{sprite(BUTTERFLY_B, pal, 0, 0, 4)}</g></g></g>'
+        )
+
+    # NPC (me): idles, blinks and waves at visitors
+    base, wave_a, wave_b = _npc_frames()
+    S = 8
+    nx, ny = 104, dy - 28 - 16 * S
+    b.append(f'<rect x="{nx + 8}" y="{ny + 16 * S - 8}" width="{10 * S}" height="12" fill="#3f9e4d"/>')
+    b.append('<g class="bob">')
+    b.append(f'<g class="idle">{sprite(base, HERO_PAL, nx, ny, S)}</g>')
+    b.append(f'<g class="wa">{sprite(wave_a, HERO_PAL, nx, ny, S)}</g>')
+    b.append(f'<g class="wb">{sprite(wave_b, HERO_PAL, nx, ny, S)}</g>')
+    b.append(f'<rect class="eye" x="{nx + 8 * S}" y="{ny + 5 * S}" width="{S}" height="{S}" fill="#1b1b2f"/>')
+    b.append("</g>")
+    for i, delay in enumerate((0, 1.3)):
         b.append(f'<g class="note" style="animation-delay:-{delay}s">'
-                 f'{sprite(NOTE, {"#": CYAN if i else YELLOW}, nx, py0 + 60, 4)}</g>')
+                 f'{sprite(NOTE, {"#": CYAN if i else YELLOW}, nx + 4 + i * 14, ny + 20, 4)}</g>')
 
-    # info
-    ix = 248
-    rows = [("NAME", "JONG WAN HUR"), ("ALIAS", "STEVEN HUR"), ("CLASS", "ML ENGINEER"), ("GUILD", "OPEN SOURCE")]
-    for i, (k, v) in enumerate(rows):
-        y = 56 + i * 40
-        b.append(text(k, ix, y, 3, GRAY, INK))
-        b.append(text(v, ix + 108, y, 3, WHITE, INK))
-
-    # bars
-    bx, bw, bh = 676, 240, 20
-    bars = [("HP", GREEN, "full"), ("MP", BLUE, "full"), ("XP", YELLOW, "xp")]
-    for i, (label, col, kind) in enumerate(bars):
-        y = 54 + i * 40
-        b.append(text(label, bx - 52, y + 0, 3, WHITE, INK))
-        b.append(f'<rect x="{bx - 4}" y="{y - 4}" width="{bw + 8}" height="{bh + 8}" fill="{FRAME}"/>')
-        b.append(f'<rect x="{bx}" y="{y}" width="{bw}" height="{bh}" fill="{INK}"/>')
-        cls = ' class="xpfill"' if kind == "xp" else ""
-        b.append(f'<rect{cls} x="{bx}" y="{y}" width="{bw}" height="{bh}" fill="{col}"/>')
-        b.append(f'<rect x="{bx}" y="{y}" width="{bw}" height="4" fill="{WHITE}" opacity=".35"/>')
-    b.append(text("COFFEE", bx + bw - 8 - text_width("COFFEE", 2), 54 + 40 + 3, 2, WHITE, INK))
-    b.append(text("LEVEL UP!", bx + bw / 2, 54 + 80 + 34, 3, YELLOW, RED, cls="lvl", center=True))
+    # speech bubble
+    bx, by, bw, bh = nx + 16 * S + 8, ny - 44, 112, 52
+    b.append(
+        '<g class="bubble">'
+        f'<rect x="{bx}" y="{by + 4}" width="{bw}" height="{bh - 8}" fill="{INK}"/>'
+        f'<rect x="{bx + 4}" y="{by}" width="{bw - 8}" height="{bh}" fill="{INK}"/>'
+        f'<rect x="{bx + 4}" y="{by + 4}" width="{bw - 8}" height="{bh - 8}" fill="{WHITE}"/>'
+        f'<path fill="{INK}" d="M{bx} {by + bh}h16v-4h-12v12h-4z M{bx - 8} {by + bh + 8}h8v4h-8z"/>'
+        f'<path fill="{WHITE}" d="M{bx + 4} {by + bh - 4}h8v4h-4v4h-4z"/>'
+        + text("HI!", bx + bw / 2, by + 12, 4, RED, center=True)
+        + "</g>"
+    )
+    b.append("</g>")  # end scene clip
 
     # dialog box with nameplate
-    dy = 256
     b.append(pixel_frame(24, dy, W - 48, H - dy - 24, fill="#101330"))
     b.append(pixel_frame(48, dy - 26, 176, 52, fill=RED, inner=FRAME))
     b.append(text("STEVEN", 48 + 88, dy - 11, 3, WHITE, INK, center=True))
     lines = [
         "WELCOME TO MY GITHUB, TRAVELER!",
-        "I'M A HARDWORKING MACHINE LEARNING ENGINEER",
+        "I'M A HARDWORKING SOFTWARE ENGINEER",
         "WHO LOVES TURNING DATA INTO RELIABLE,",
         "HIGH-PERFORMANCE INTELLIGENT SYSTEMS.",
     ]
-    lx, ly0, lh, lpx = 64, dy + 44, 34, 3
+    lx, ly0, lh, lpx = 64, dy + 40, 34, 3
     covers = []
     css_lines = []
     cycle = 16.0
@@ -587,26 +716,47 @@ def status():
     b.append('<defs><clipPath id="dclip"><rect x="40" y="%d" width="%d" height="%d"/></clipPath></defs>'
              % (dy + 16, W - 80, H - dy - 56))
     b.append(f'<g clip-path="url(#dclip)">{"".join(covers)}</g>')
-    b.append(text("~", W - 88, H - 80, 4, YELLOW, INK, cls="arrow"))
+    b.append(text("~", W - 88, H - 72, 4, YELLOW, INK, cls="arrow"))
 
+    # wave twice every 4s, idle the rest of the time
+    def frames(on):
+        ks = []
+        for k in range(9):
+            ks.append(f"{k * 5}%{{opacity:{1 if (k < 8 and k % 2 == on) else 0}}}")
+        return "".join(ks)
+
+    idle_k = "0%{opacity:0}40%{opacity:1}"
     done = t / cycle * 100
     css = (
         "".join(css_lines)
         + f"""
+.idle,.wa,.wb{{animation-duration:4s;animation-iteration-count:infinite;animation-timing-function:step-end}}
+.idle{{animation-name:idle}}.wa{{animation-name:wa}}.wb{{animation-name:wb}}
+@keyframes idle{{{idle_k}}}@keyframes wa{{{frames(0)}}}@keyframes wb{{{frames(1)}}}
+.bob{{animation:bob 1.2s steps(1) infinite}}
+@keyframes bob{{0%{{transform:translateY(0)}}50%{{transform:translateY(4px)}}}}
 .eye{{animation:eye 4s steps(1) infinite}}
-@keyframes eye{{0%,90%{{opacity:1}}93%{{opacity:0}}97%{{opacity:1}}}}
+@keyframes eye{{0%,88%{{opacity:1}}92%{{opacity:0}}96%{{opacity:1}}}}
+.bubble{{animation:bub 1s steps(1) infinite}}
+@keyframes bub{{0%{{transform:translateY(0)}}50%{{transform:translateY(-4px)}}}}
 .note{{opacity:0;animation:note 2.6s linear infinite}}
-@keyframes note{{0%{{opacity:0;transform:translate(0,0)}}15%{{opacity:1}}80%{{opacity:1}}100%{{opacity:0;transform:translate(-12px,-56px)}}}}
-.xpfill{{transform-box:fill-box;transform-origin:0 0;animation:xp 6s infinite}}
-@keyframes xp{{0%{{transform:scaleX(.05);animation-timing-function:steps(24,end)}}70%,100%{{transform:scaleX(1)}}}}
-.lvl{{opacity:0;animation:lvl 6s steps(1) infinite}}
-@keyframes lvl{{0%,70%{{opacity:0}}72%{{opacity:1}}78%{{opacity:0}}82%{{opacity:1}}88%{{opacity:0}}92%,100%{{opacity:1}}}}
+@keyframes note{{0%{{opacity:0;transform:translate(0,0)}}15%{{opacity:1}}80%{{opacity:1}}100%{{opacity:0;transform:translate(-16px,-56px)}}}}
+.clouds{{animation:drift 90s linear infinite}}
+@keyframes drift{{from{{transform:translateX(0)}}to{{transform:translateX(-{W}px)}}}}
+.glow{{animation:glow 2s steps(1) infinite}}
+@keyframes glow{{0%{{opacity:.9}}50%{{opacity:.5}}}}
+.sway{{animation:sway 1.6s steps(1) infinite}}.s1{{animation-delay:-.8s}}
+@keyframes sway{{0%{{transform:translateX(0)}}50%{{transform:translateX(4px)}}}}
+.fa{{animation:fa .3s steps(1) infinite}}.fb{{animation:fb .3s steps(1) infinite}}
+@keyframes fa{{0%{{opacity:1}}50%{{opacity:0}}}}@keyframes fb{{0%{{opacity:0}}50%{{opacity:1}}}}
+.fly{{animation:fly 12s steps(48) infinite}}
+@keyframes fly{{0%{{transform:translate(260px,150px)}}25%{{transform:translate(380px,110px)}}50%{{transform:translate(520px,170px)}}75%{{transform:translate(400px,200px)}}100%{{transform:translate(260px,150px)}}}}
 .arrow{{opacity:0;animation:arrow {cycle}s infinite}}
 @keyframes arrow{{0%,{done:.2f}%{{opacity:0;transform:translateY(0)}}{done + .1:.2f}%,{done + 3:.2f}%,{done + 9:.2f}%,{done + 15:.2f}%,{done + 21:.2f}%{{opacity:1;transform:translateY(0)}}{done + 1.5:.2f}%,{done + 7.5:.2f}%,{done + 13.5:.2f}%,{done + 19.5:.2f}%{{opacity:1;transform:translateY(4px)}}97%{{opacity:1}}100%{{opacity:0}}}}
-@media (prefers-reduced-motion:reduce){{*{{animation:none!important}}[class^=tc]{{display:none}}.lvl{{opacity:1}}.note{{opacity:0}}}}
+@media (prefers-reduced-motion:reduce){{*{{animation:none!important}}[class^=tc]{{display:none}}.idle,.wb,.note{{opacity:0}}.fly{{transform:translate(380px,120px)}}.fb{{opacity:0}}}}
 """
     )
-    return svg_doc(W, H, "".join(b), css, "Player status: Jong Wan Hur (Steven), Machine Learning Engineer")
+    return svg_doc(W, H, "".join(b), css, "Steven, my pixel character, welcomes visitors to my GitHub")
 
 
 # --------------------------------------------------------------------------
@@ -663,15 +813,44 @@ def footer():
     return svg_doc(W, H, "".join(b), "".join(css), "Thanks for playing")
 
 
+# --------------------------------------------------------------------------
+# 5. Inventory icons missing from skillicons.dev
+# --------------------------------------------------------------------------
+# Logo paths from simple-icons (CC0), 24x24 viewBox.
+NUMPY_PATH = "M10.315 4.876L6.3048 2.8517l-4.401 2.1965 4.1186 2.0683zm1.8381.9277l4.2045 2.1223-4.3622 2.1906-4.125-2.0718zm5.6153-2.9213l4.3193 2.1658-3.863 1.9402-4.2131-2.1252zm-1.859-.9329L12.021 0 8.1742 1.9193l4.0068 2.0208zm-3.0401 16.7443V24l4.7107-2.3507-.0053-5.3085zm4.7037-4.2057l-.0052-5.2528-4.6985 2.3356v5.2546zm5.6553-.9845v5.327l-4.0178 2.0052-.0029-5.3028zm0-1.8626V6.4214l-4.0253 2.001.0034 5.2633zM11.2062 11.571L8.0333 9.9756v6.895s-3.8804-8.2564-4.2399-8.998c-.0463-.0957-.2371-.2007-.2858-.2262C2.8118 7.2812.773 6.2485.773 6.2485V18.43l2.8204 1.5076v-6.3674s3.8392 7.3775 3.878 7.458c.0389.0807.4245.8582.8362 1.1314.5485.363 2.8992 1.7766 2.8992 1.7766z"
+SPARK_PATH = "M10.812 0c-.425.013-.845.215-1.196.605a3.593 3.593 0 00-.493.722c-.355.667-.425 1.415-.556 2.143a551.9 551.9 0 00-.726 4.087c-.027.16-.096.227-.244.273C5.83 8.386 4.06 8.94 2.3 9.514c-.387.125-.773.289-1.114.506-1.042.665-1.196 1.753-.415 2.71.346.422.79.715 1.284.936 1.1.49 2.202.976 3.3 1.47.019.01.036.013.053.019h-.004l1.306.535c0 .023.002.045 0 .073-.2 2.03-.39 4.063-.58 6.095-.04.419-.012.831.134 1.23.317.87 1.065 1.148 1.881.701.372-.204.666-.497.937-.818 1.372-1.623 2.746-3.244 4.113-4.872.111-.133.205-.15.363-.098.349.117.697.231 1.045.347h.001c.02.012.045.02.073.03l.142.042c1.248.416 2.68.775 3.929 1.19.4.132.622.164 1.045.098.311-.048.592-.062.828-.236.602-.33.995-.957.988-1.682-.005-.427-.154-.813-.35-1.186-.82-1.556-1.637-3.113-2.461-4.666-.078-.148-.076-.243.037-.375 1.381-1.615 2.756-3.236 4.133-4.855.272-.32.513-.658.653-1.058.308-.878-.09-1.57-1-1.741a2.783 2.783 0 00-1.235.069c-1.974.521-3.947 1.041-5.918 1.57-.175.047-.26.015-.355-.144a353.08 353.08 0 00-2.421-4.018 4.61 4.61 0 00-.652-.849c-.371-.37-.802-.549-1.227-.536zm.172 3.703a.592.592 0 01.189.211c.87 1.446 1.742 2.89 2.609 4.338.07.118.135.16.277.121 1.525-.41 3.052-.813 4.579-1.217.367-.098.735-.193 1.103-.289a.399.399 0 01-.1.2c-1.259 1.48-2.516 2.962-3.779 4.438-.11.13-.12.22-.04.37.937 1.803 1.768 3.309 2.498 4.76l-3.696-1.019c-.538-.18-1.077-.358-1.615-.539-.163-.055-.25-.03-.36.1-1.248 1.488-2.504 2.97-3.759 4.454a.398.398 0 01-.18.132c.035-.378.068-.757.104-1.136.149-1.572.297-3.144.451-4.716-.03-.318.117-.405-.322-.545-1.493-.593-3.346-1.321-4.816-1.905a.595.595 0 01.24-.134c1.797-.57 3.595-1.14 5.394-1.705.127-.04.199-.092.211-.233.013-.148.05-.294.076-.441.241-1.363.483-2.726.726-4.088.068-.386.14-.771.21-1.157z"
+
+
+def extra_icons():
+    """NumPy + PySpark tiles drawn in skillicons.dev's style (256px tile, rx 60,
+    44px gap), with a leading gap so the image sits flush after a skillicons row."""
+    tile, gap, h = 256, 44, 48
+    icons = [(NUMPY_PATH, "#4DABCF"), (SPARK_PATH, "#E25A1C")]
+    vw = len(icons) * (gap + tile)
+    body = []
+    for i, (d, color) in enumerate(icons):
+        x = gap + i * (tile + gap)
+        body.append(
+            f'<rect x="{x}" width="{tile}" height="{tile}" rx="60" fill="#242938"/>'
+            f'<path transform="translate({x + 48} 48) scale(6.6667)" fill="{color}" d="{d}"/>'
+        )
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{vw * h / tile:g}" height="{h}" '
+        f'viewBox="0 0 {vw} {tile}" fill="none" role="img" aria-label="NumPy, PySpark">'
+        f"<title>NumPy, PySpark</title>{''.join(body)}</svg>\n"
+    )
+
+
 def main():
     OUT.mkdir(exist_ok=True)
     files = {
         "banner.svg": banner(),
-        "status.svg": status(),
-        "header-inventory.svg": header("INVENTORY", "ITEMS: 14", CHEST, CHEST_PAL),
+        "welcome.svg": welcome(),
+        "header-inventory.svg": header("INVENTORY", "ITEMS: 12", CHEST, CHEST_PAL),
         "header-quests.svg": header("QUEST LOG", "CLEARED: 5  ACTIVE: 2", SCROLL, SCROLL_PAL),
         "header-battle.svg": header("BATTLE LOG", "CONTRIBUTIONS.EXE", JOYSTICK, JOY_PAL),
         "footer.svg": footer(),
+        "icons-extra.svg": extra_icons(),
     }
     for name, svg in files.items():
         (OUT / name).write_text(svg)

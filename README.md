@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/banner.svg" width="100%" alt="Pixel-art banner: Steven Hur, Machine Learning Engineer, running through a night city and stomping a bug" />
+  <img src="./assets/banner.svg" width="100%" alt="Pixel-art banner: Steven Hur, Software Engineer, running through a night city and stomping a bug" />
 </div>
 
 <div align="center">
@@ -11,7 +11,7 @@
 <br>
 
 <div align="center">
-  <img src="./assets/status.svg" width="100%" alt="Player status: Jong Wan Hur, alias Steven Hur, class ML Engineer. Welcome to my GitHub! I'm a hardworking Machine Learning Engineer who loves turning data into reliable, high-performance intelligent systems." />
+  <img src="./assets/welcome.svg" width="100%" alt="My pixel character waves hello as an NPC: Welcome to my GitHub, traveler! I'm a hardworking Software Engineer who loves turning data into reliable, high-performance intelligent systems." />
 </div>
 
 <br>
@@ -20,11 +20,11 @@
 
 <div align="center">
   <br>
-  <img src="https://skillicons.dev/icons?i=python,java,spring,js,cpp,github,mysql&perline=7" alt="Python, Java, Spring Boot, JavaScript, C++, GitHub, MySQL" />
+  <img src="https://skillicons.dev/icons?i=python,java,spring,js,github,mysql&perline=6" alt="Python, Java, Spring Boot, JavaScript, GitHub, MySQL" />
   <br>
-  <img src="https://skillicons.dev/icons?i=postgres,git,gitlab,html,css,bootstrap,tailwind&perline=7" alt="PostgreSQL, Git, GitLab, HTML, CSS, Bootstrap, Tailwind" />
+  <img src="https://skillicons.dev/icons?i=postgres,git,pytorch,sklearn&perline=4" alt="PostgreSQL, Git, PyTorch, scikit-learn" /><img src="./assets/icons-extra.svg" alt="NumPy, PySpark" />
   <br><br>
-  <sub><code>[ EQUIPPED ]</code> Python · Java · Spring Boot · JavaScript · C++ · GitHub · MySQL &nbsp;|&nbsp; <code>[ BAG ]</code> PostgreSQL · Git · GitLab · HTML · CSS · Bootstrap · Tailwind</sub>
+  <sub><code>[ EQUIPPED ]</code> Python · Java · Spring Boot · JavaScript · GitHub · MySQL &nbsp;|&nbsp; <code>[ BAG ]</code> PostgreSQL · Git · PyTorch · scikit-learn · NumPy · PySpark</sub>
 </div>
 
 <br>
