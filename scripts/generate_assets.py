@@ -484,7 +484,6 @@ def banner():
 @keyframes squash{{0%,79%{{transform:scaleY(1);opacity:1}}82%{{transform:scaleY(.25);opacity:1}}90%,100%{{transform:scaleY(.25);opacity:0}}}}
 .pop{{opacity:0;animation:pop 5s infinite}}
 @keyframes pop{{0%,79%{{opacity:0;transform:translateY(0)}}82%{{opacity:1}}95%{{opacity:1;transform:translateY(-8px)}}100%{{opacity:0;transform:translateY(-8px)}}}}
-@media (prefers-reduced-motion:reduce){{*{{animation:none!important}}.fb,.pop{{opacity:0}}.bug{{transform:translateX(640px)}}}}
 """
     return svg_doc(W, H, "".join(b), css, "Steven Hur - Software Engineer")
 
@@ -737,7 +736,6 @@ def welcome():
 @keyframes fly{{0%{{transform:translate(260px,150px)}}25%{{transform:translate(380px,110px)}}50%{{transform:translate(520px,170px)}}75%{{transform:translate(400px,200px)}}100%{{transform:translate(260px,150px)}}}}
 .arrow{{opacity:0;animation:arrow {cycle}s infinite}}
 @keyframes arrow{{0%,{done:.2f}%{{opacity:0;transform:translateY(0)}}{done + .1:.2f}%,{done + 3:.2f}%,{done + 9:.2f}%,{done + 15:.2f}%,{done + 21:.2f}%{{opacity:1;transform:translateY(0)}}{done + 1.5:.2f}%,{done + 7.5:.2f}%,{done + 13.5:.2f}%,{done + 19.5:.2f}%{{opacity:1;transform:translateY(4px)}}97%{{opacity:1}}100%{{opacity:0}}}}
-@media (prefers-reduced-motion:reduce){{*{{animation:none!important}}[class^=tc]{{display:none}}.idle,.wb,.note{{opacity:0}}.fly{{transform:translate(380px,120px)}}.fb{{opacity:0}}}}
 """
     )
     return svg_doc(W, H, "".join(b), css, "Steven, my pixel character, welcomes visitors to my GitHub")
@@ -758,7 +756,6 @@ def header(label, sub, icon, pal):
 @keyframes blink{0%{opacity:1}50%{opacity:0}}
 .bob{animation:bob 1.2s steps(1) infinite}
 @keyframes bob{0%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}}
 """
     return svg_doc(W, H, "".join(b), css, label.title())
 
@@ -792,7 +789,6 @@ def footer():
 @keyframes blink{0%{opacity:1}50%{opacity:0}}
 .coin{transform-box:fill-box;transform-origin:50% 50%;animation:spin .8s steps(1) infinite}
 @keyframes spin{0%{transform:scaleX(1)}25%{transform:scaleX(.6)}50%{transform:scaleX(.2)}75%{transform:scaleX(.6)}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}.d0{opacity:1}}
 """)
     return svg_doc(W, H, "".join(b), "".join(css), "Thanks for playing")
 
@@ -810,18 +806,18 @@ SPARK_PATH = "M10.812 0c-.425.013-.845.215-1.196.605a3.593 3.593 0 00-.493.722c-
 # --------------------------------------------------------------------------
 # Pixel sprites for each id live in scripts/icon_pixels.json (made by pixelate_icons.py).
 INVENTORY = [
-    {"id": "python", "name": "PYTHON", "rarity": "LEGENDARY", "type": "MAIN WEAPON", "stat": "+99 DATA MAGIC"},
-    {"id": "java", "name": "JAVA", "rarity": "EPIC", "type": "HEAVY ARMOR", "stat": "+80 STABILITY"},
-    {"id": "spring", "name": "SPRING BOOT", "rarity": "EPIC", "type": "BOOTS", "stat": "+70 JUMP POWER"},
-    {"id": "js", "name": "JAVASCRIPT", "rarity": "RARE", "type": "THROWING DAGGER", "stat": "+60 WEB AGILITY"},
-    {"id": "github", "name": "GITHUB", "rarity": "RARE", "type": "GUILD BADGE", "stat": "+60 TEAMWORK"},
-    {"id": "mysql", "name": "MYSQL", "rarity": "RARE", "type": "STORAGE CHEST", "stat": "+60 QUERY SPEED"},
-    {"id": "postgres", "name": "POSTGRESQL", "rarity": "EPIC", "type": "ELEPHANT MOUNT", "stat": "+80 INTEGRITY"},
-    {"id": "git", "name": "GIT", "rarity": "RARE", "type": "TIME SCROLL", "stat": "UNDO ANY MISTAKE"},
-    {"id": "pytorch", "name": "PYTORCH", "rarity": "LEGENDARY", "type": "FLAME TORCH", "stat": "+99 NEURAL POWER"},
-    {"id": "sklearn", "name": "SCIKIT-LEARN", "rarity": "EPIC", "type": "ALCHEMY KIT", "stat": "+80 ACCURACY"},
-    {"id": "numpy", "name": "NUMPY", "rarity": "EPIC", "type": "ARRAY CUBE", "stat": "+90 VECTOR SPEED"},
-    {"id": "pyspark", "name": "PYSPARK", "rarity": "EPIC", "type": "SPARK GEM", "stat": "+90 BIG DATA AOE"},
+    {"id": "python", "short": "PYTHON", "name": "PYTHON", "rarity": "LEGENDARY", "type": "MAIN WEAPON", "stat": "+99 DATA MAGIC"},
+    {"id": "java", "short": "JAVA", "name": "JAVA", "rarity": "EPIC", "type": "HEAVY ARMOR", "stat": "+80 STABILITY"},
+    {"id": "spring", "short": "SPRING", "name": "SPRING BOOT", "rarity": "EPIC", "type": "BOOTS", "stat": "+70 JUMP POWER"},
+    {"id": "js", "short": "JS", "name": "JAVASCRIPT", "rarity": "RARE", "type": "THROWING DAGGER", "stat": "+60 WEB AGILITY"},
+    {"id": "github", "short": "GITHUB", "name": "GITHUB", "rarity": "RARE", "type": "GUILD BADGE", "stat": "+60 TEAMWORK"},
+    {"id": "mysql", "short": "MYSQL", "name": "MYSQL", "rarity": "RARE", "type": "STORAGE CHEST", "stat": "+60 QUERY SPEED"},
+    {"id": "postgres", "short": "POSTGRES", "name": "POSTGRESQL", "rarity": "EPIC", "type": "ELEPHANT MOUNT", "stat": "+80 INTEGRITY"},
+    {"id": "git", "short": "GIT", "name": "GIT", "rarity": "RARE", "type": "TIME SCROLL", "stat": "UNDO ANY MISTAKE"},
+    {"id": "pytorch", "short": "PYTORCH", "name": "PYTORCH", "rarity": "LEGENDARY", "type": "FLAME TORCH", "stat": "+99 NEURAL POWER"},
+    {"id": "sklearn", "short": "SKLEARN", "name": "SCIKIT-LEARN", "rarity": "EPIC", "type": "ALCHEMY KIT", "stat": "+80 ACCURACY"},
+    {"id": "numpy", "short": "NUMPY", "name": "NUMPY", "rarity": "EPIC", "type": "ARRAY CUBE", "stat": "+90 VECTOR SPEED"},
+    {"id": "pyspark", "short": "PYSPARK", "name": "PYSPARK", "rarity": "EPIC", "type": "SPARK GEM", "stat": "+90 BIG DATA AOE"},
 ]
 RARITY = {"LEGENDARY": (ORANGE, 5), "EPIC": ("#b57bff", 4), "RARE": (BLUE, 3)}
 ICON_PIXELS = Path(__file__).resolve().parent / "icon_pixels.json"
@@ -831,17 +827,18 @@ def inventory():
     import json
 
     icons = json.loads(ICON_PIXELS.read_text())
-    W, H = 960, 300
+    W, H = 960, 356
     N = len(INVENTORY)
     COLS, SLOT, GAP = 6, 88, 12
-    gx, gy = 36, 36
+    ROW = SLOT + 40  # slot + name label
+    gx, gy = 36, 32
     per = 1.8
     cycle = N * per
     b = [pixel_frame(0, 0, W, H)]
     css = []
 
     def slot_xy(i):
-        return gx + (i % COLS) * (SLOT + GAP), gy + (i // COLS) * (SLOT + GAP)
+        return gx + (i % COLS) * (SLOT + GAP), gy + (i // COLS) * ROW
 
     # item grid
     for i, item in enumerate(INVENTORY):
@@ -854,6 +851,8 @@ def inventory():
         b.append(f'<rect x="{x + 8}" y="{y + 8}" width="{SLOT - 16}" height="4" fill="#262c63"/>')
         ic = icons[item["id"]]
         b.append(sprite(ic["rows"], ic["palette"], x + 8, y + 8, 3))
+        b.append(text(item["short"], x + SLOT / 2, y + SLOT + 12, 2, GRAY, INK, center=True))
+        b.append(text(item["short"], x + SLOT / 2, y + SLOT + 12, 2, YELLOW, INK, cls=f"p{i}", center=True))
     hint = "AUTO-BROWSING..."
     grid_right = gx + COLS * SLOT + (COLS - 1) * GAP
     b.append(text(hint, grid_right - text_width(hint, 2), H - 52, 2, GRAY, INK, cls="blink"))
@@ -880,7 +879,9 @@ def inventory():
         ks.append(f"{i / N * 100:.3f}%{{transform:translate({x - c}px,{y - c}px)}}")
     x, y = slot_xy(0)
     ks.append(f"100%{{transform:translate({x - c}px,{y - c}px)}}")
-    css.append(f".cursor{{animation:cur {cycle}s step-end infinite}}@keyframes cur{{{''.join(ks)}}}")
+    # the base transform keeps the cursor on slot 1 when animations are off (Reduce Motion)
+    css.append(f".cursor{{transform:translate({x - c}px,{y - c}px);animation:cur {cycle}s step-end infinite}}"
+               f"@keyframes cur{{{''.join(ks)}}}")
 
     # detail panel, one page per item, synced with the cursor
     px0, py0, pw, ph = 652, 24, 284, H - 48
@@ -916,7 +917,6 @@ def inventory():
 @keyframes cp{0%{transform:translate(0,0)}50%{transform:translate(0,-2px)}}
 .legend{animation:legend 1.2s steps(1) infinite}
 @keyframes legend{0%{fill:#ff9f43}50%{fill:#ffd25a}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}}
 """)
     names = ", ".join(it["name"].title() for it in INVENTORY)
     return svg_doc(W, H, "".join(b), "".join(css), f"Inventory: {names}")
