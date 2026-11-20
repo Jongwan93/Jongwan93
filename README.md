@@ -28,6 +28,14 @@
 
 > *"Contributing back to the community and learning through collaboration."*
 
+<div align="center">
+  <a href="https://github.com/pulls?q=is%3Apr+author%3AJongwan93+-user%3AJongwan93"><img src="./assets/quests.svg" width="100%" alt="Quest log of my open source pull requests: 5 cleared and 2 in progress across Dagster, scikit-learn and NumPy" /></a>
+</div>
+
+<details>
+<summary><b>📜 Quest details (links)</b></summary>
+<br>
+
 | Guild | Quest | Status |
 | :---: | :--- | :---: |
 | <img src="https://img.shields.io/badge/Dagster-4F43DD?style=flat-square&logo=dagster&logoColor=white" alt="Dagster" /> | [#32953](https://github.com/dagster-io/dagster/pull/32953) Handle `InputDefinition` objects when mapping asset specs | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
@@ -37,6 +45,8 @@
 | <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white" alt="scikit-learn" /> | [#32444](https://github.com/scikit-learn/scikit-learn/pull/32444) Switch to absolute imports in `_datasets_pair.pxd.tp` | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
 | <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white" alt="scikit-learn" /> | [#32445](https://github.com/scikit-learn/scikit-learn/pull/32445) Switch to absolute imports in `_datasets_pair.pyx.tp` | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
 | <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white" alt="NumPy" /> | [#30277](https://github.com/numpy/numpy/pull/30277) Fix misleading `ValueError` in `convolve` on empty inputs | ![CLEARED](https://img.shields.io/badge/★_CLEARED-5ad16a?style=flat-square) |
+
+</details>
 
 <br>
 

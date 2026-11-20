@@ -922,13 +922,192 @@ def inventory():
     return svg_doc(W, H, "".join(b), "".join(css), f"Inventory: {names}")
 
 
+# --------------------------------------------------------------------------
+# 7. Quest log: open source PRs as a JRPG quest journal with an auto-moving cursor
+# --------------------------------------------------------------------------
+# Keep in sync with the links table under the quest log in README.md.
+QUESTS = [
+    {"guild": "dagster", "pr": 32953, "status": "cleared", "short": "HANDLE INPUTDEFINITION",
+     "title": "Handle InputDefinition objects when mapping asset specs"},
+    {"guild": "dagster", "pr": 32841, "status": "cleared", "short": "FIX WINDOWS DBT RELOAD",
+     "title": "Fix FileExistsError on Windows during dbt project reload"},
+    {"guild": "dagster", "pr": 32948, "status": "active", "short": "FIX ECS LAUNCH INDEXERROR",
+     "title": "Fix IndexError when an ECS task fails to launch in PipesECSClient"},
+    {"guild": "dagster", "pr": 32650, "status": "active", "short": "CUSTOM __SIGNATURE__ HINTS",
+     "title": "Handle callables with a custom __signature__ in get_type_hints"},
+    {"guild": "sklearn", "pr": 32444, "status": "cleared", "short": "ABSOLUTE IMPORTS (.PXD)",
+     "title": "Switch to absolute imports in _datasets_pair.pxd.tp"},
+    {"guild": "sklearn", "pr": 32445, "status": "cleared", "short": "ABSOLUTE IMPORTS (.PYX)",
+     "title": "Switch to absolute imports in _datasets_pair.pyx.tp"},
+    {"guild": "numpy", "pr": 30277, "status": "cleared", "short": "FIX CONVOLVE EMPTY INPUT",
+     "title": "Fix misleading ValueError in convolve on empty inputs"},
+]
+# guild -> (display name, crest letter, main color, light color)
+GUILDS = {
+    "dagster": ("DAGSTER", "D", "#4f43dd", "#8a80ff"),
+    "sklearn": ("SKLEARN", "S", "#f7931e", "#ffc06b"),
+    "numpy": ("NUMPY", "N", "#4dabcf", "#9adcf2"),
+}
+CREST = [
+    "KKKKKKKKKK",
+    "KLLLLLLLLK",
+    "KLCCCCCCCK",
+    "KLCCCCCCCK",
+    "KLCCCCCCCK",
+    "KLCCCCCCCK",
+    "KLCCCCCCCK",
+    ".KLCCCCCK.",
+    ".KLCCCCCK.",
+    "..KLCCCK..",
+    "...KCCK...",
+    "....KK....",
+]
+SWORD = ["..W..", "..W..", "..W..", "..W..", "YYYYY", "..H..", "..H.."]
+SWORD_PAL = {"W": "#dfe6ff", "Y": YELLOW, "H": "#c47a2c"}
+QUEST_STATUS = {
+    "cleared": ("CLEARED", GREEN),
+    "active": ("IN PROGRESS", YELLOW),
+}
+
+
+def quest_counts():
+    cleared = sum(q["status"] == "cleared" for q in QUESTS)
+    return cleared, len(QUESTS) - cleared
+
+
+def quest_log():
+    import textwrap
+
+    N = len(QUESTS)
+    ROW_H, ROW_GAP = 32, 4
+    lx0, lx1 = 28, 624  # list area
+    top = 72  # first row
+    H = top + N * (ROW_H + ROW_GAP) + 52
+    W = 960
+    per = 2.6
+    cycle = N * per
+    b = [pixel_frame(0, 0, W, H)]
+    css = []
+
+    # column headings
+    col_no, col_title, col_guild = 80, 168, 492
+    hy = 32
+    b.append(text("NO.", col_no, hy, 2, GRAY, INK))
+    b.append(text("QUEST", col_title, hy, 2, GRAY, INK))
+    b.append(text("GUILD", col_guild + 56, hy, 2, GRAY, INK, center=True))
+    b.append(f'<rect x="{lx0 + 8}" y="{hy + 22}" width="{lx1 - lx0 - 16}" height="4" fill="{FRAME2}"/>')
+
+    def row_y(i):
+        return top + i * (ROW_H + ROW_GAP)
+
+    # zebra rows
+    for i in range(N):
+        if i % 2 == 0:
+            b.append(f'<rect x="{lx0 + 8}" y="{row_y(i)}" width="{lx1 - lx0 - 16}" height="{ROW_H}" fill="#181d47"/>')
+
+    # selection bar + cursor, hopping row to row (drawn under the row text)
+    sel = (
+        f'<rect x="{lx0 + 8}" y="0" width="{lx1 - lx0 - 16}" height="{ROW_H}" fill="#2a3170"/>'
+        f'<rect x="{lx0 + 8}" y="0" width="4" height="{ROW_H}" fill="{YELLOW}"/>'
+        f'<rect x="{lx1 - 12}" y="0" width="4" height="{ROW_H}" fill="{YELLOW}"/>'
+    )
+    b.append(f'<g class="sel">{sel}</g>')
+    ks = [f"{i / N * 100:.3f}%{{transform:translateY({row_y(i)}px)}}" for i in range(N)]
+    ks.append(f"100%{{transform:translateY({row_y(0)}px)}}")
+    css.append(f".sel{{transform:translateY({row_y(0)}px);animation:sel {cycle}s step-end infinite}}"
+               f"@keyframes sel{{{''.join(ks)}}}")
+
+    for i, q in enumerate(QUESTS):
+        y = row_y(i)
+        ty = y + 9
+        gname, _, gcol, _ = GUILDS[q["guild"]]
+        if q["status"] == "cleared":
+            b.append(text("$", 52, ty, 2, GREEN, INK))
+        else:
+            b.append(f'<g class="act">{sprite(SWORD, SWORD_PAL, 52, ty, 2)}</g>')
+        b.append(text(f"#{q['pr']}", col_no, ty, 2, GRAY, INK))
+        assert len(q["short"]) <= 26, q["short"]
+        b.append(text(q["short"], col_title, ty, 2, WHITE, INK))
+        b.append(text(q["short"], col_title, ty, 2, YELLOW, INK, cls=f"p{i}"))
+        b.append(f'<rect x="{col_guild}" y="{y + 5}" width="112" height="22" fill="{INK}"/>')
+        b.append(f'<rect x="{col_guild + 2}" y="{y + 7}" width="108" height="18" fill="{gcol}"/>')
+        b.append(text(gname, col_guild + 56, ty, 2, WHITE, INK, center=True))
+
+    # legend + hint
+    ly = H - 40
+    b.append(text("$ CLEARED", lx0 + 12, ly, 2, GREEN, INK))
+    sx = lx0 + 12 + text_width("$ CLEARED", 2) + 32
+    b.append(sprite(SWORD, SWORD_PAL, sx, ly, 2))
+    b.append(text("IN PROGRESS", sx + 22, ly, 2, YELLOW, INK))
+    hint = "AUTO-BROWSING..."
+    b.append(text(hint, lx1 - 8 - text_width(hint, 2), ly, 2, GRAY, INK, cls="blink"))
+
+    # detail panel, one page per quest, synced with the cursor
+    px0, py0, pw, ph = 652, 24, 284, H - 48
+    b.append(pixel_frame(px0, py0, pw, ph, fill=NAVY2))
+    ix = px0 + 22
+    for i, q in enumerate(QUESTS):
+        gname, letter, gcol, glight = GUILDS[q["guild"]]
+        label, scol = QUEST_STATUS[q["status"]]
+        lines = textwrap.wrap(q["title"].upper(), 20)
+        assert len(lines) <= 4, lines
+        page = [
+            sprite(CREST, {"K": INK, "L": glight, "C": gcol}, ix, py0 + 22, 4),
+            text(letter, ix + 15, py0 + 38, 2, WHITE, INK),
+            text(gname, ix + 56, py0 + 26, 3, glight, INK),
+            text(f"QUEST #{q['pr']}", ix + 56, py0 + 56, 2, GRAY, INK),
+        ]
+        for k, line in enumerate(lines):
+            page.append(text(line, ix, py0 + 92 + k * 22, 2, WHITE, INK))
+        sy = py0 + 190
+        page.append(text("STATUS:", ix, sy, 2, GRAY, INK))
+        page.append(text(label, ix + 96, sy, 2, scol, INK, cls="blink" if q["status"] == "active" else ""))
+        # progress bar: 10 segments
+        segs, filled = [], 10 if q["status"] == "cleared" else 6
+        for s in range(10):
+            sx2 = ix + s * 24
+            col = scol if s < filled else "#2a3170"
+            cls = ' class="blink"' if (q["status"] == "active" and s == filled) else ""
+            if cls:
+                col = scol
+            segs.append(f'<rect{cls} x="{sx2}" y="{sy + 24}" width="20" height="12" fill="{col}"/>')
+        page.append(f'<rect x="{ix - 4}" y="{sy + 20}" width="244" height="20" fill="{INK}"/>' + "".join(segs))
+        page.append(text("REWARD:", ix, sy + 56, 2, GRAY, INK))
+        if q["status"] == "cleared":
+            page.append(text("+500 EXP", ix + 96, sy + 56, 2, GREEN, INK))
+            page.append(text("+1 MERGED PR", ix + 96, sy + 78, 2, CYAN, INK))
+        else:
+            page.append(text("??? EXP", ix + 96, sy + 56, 2, GRAY, INK))
+            page.append(text("IN REVIEW...", ix + 96, sy + 78, 2, CYAN, INK))
+        b.append(f'<g class="p{i}">{"".join(page)}</g>')
+        a, z = i / N * 100, (i + 1) / N * 100
+        css.append(
+            f".p{i}{{opacity:{1 if i == 0 else 0};animation:p{i} {cycle}s step-end infinite}}"
+            f"@keyframes p{i}{{0%{{opacity:{1 if i == 0 else 0}}}"
+            + (f"{a:.3f}%{{opacity:1}}" if i else "")
+            + f"{z:.3f}%{{opacity:0}}100%{{opacity:0}}}}"
+        )
+
+    css.append("""
+.blink{animation:blink 1.4s steps(1) infinite}
+@keyframes blink{0%{opacity:1}50%{opacity:.35}}
+.act{animation:act .8s steps(1) infinite}
+@keyframes act{0%{transform:translate(0,0)}50%{transform:translate(0,-2px)}}
+""")
+    cleared, active = quest_counts()
+    return svg_doc(W, H, "".join(b), "".join(css),
+                   f"Quest log: {cleared} open source pull requests cleared, {active} in progress")
+
+
 def main():
     OUT.mkdir(exist_ok=True)
+    cleared, active = quest_counts()
     files = {
         "banner.svg": banner(),
         "welcome.svg": welcome(),
-        "header-inventory.svg": header("INVENTORY", "ITEMS: 12", CHEST, CHEST_PAL),
-        "header-quests.svg": header("QUEST LOG", "CLEARED: 5  ACTIVE: 2", SCROLL, SCROLL_PAL),
+        "header-inventory.svg": header("INVENTORY", f"ITEMS: {len(INVENTORY)}", CHEST, CHEST_PAL),
+        "header-quests.svg": header("QUEST LOG", f"CLEARED: {cleared}  ACTIVE: {active}", SCROLL, SCROLL_PAL),
+        "quests.svg": quest_log(),
         "header-battle.svg": header("BATTLE LOG", "CONTRIBUTIONS.EXE", JOYSTICK, JOY_PAL),
         "footer.svg": footer(),
         "inventory.svg": inventory(),
